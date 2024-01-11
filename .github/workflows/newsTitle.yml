@@ -11,7 +11,7 @@ on:
   # 특정 시간이 될때마다 실행
   # cron표현식 사용 : crontab.guru 참조
   schedule :
-    - cron : "50 * * * *"
+    - cron : "30 * * * *"
     
   push:
     branches: [ "main" ]
