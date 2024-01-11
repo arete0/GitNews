@@ -26,10 +26,7 @@ jobs:
 
     # 깃허버에서 제공하는 우분투 서버에서 작동됨
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.9", "3.10", "3.11"]
+    # 파이썬 버전 삭제
 
     steps:
     - uses: actions/checkout@v3
