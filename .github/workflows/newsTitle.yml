@@ -1,0 +1,75 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+# 실행된 파일의 이름 
+# -수집할 때마다 알림
+name: Python package
+
+# on 
+# - 어떤 조건일 때 파일이 실행됨
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# jobs
+# -실제 작업이 진행되는 내용
+
+jobs:
+  build:
+
+    # 깃허버에서 제공하는 우분투 서버에서 작동됨
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    # 
+    - name: Install dependencies
+      run: |
+        # pip 최신화
+        python -m pip install --upgrade pip
+        
+    # 필요한 라이브러리 설치하기   
+    - name: library install
+      run: |
+        pip install requests
+        pip install beautifulsoup4
+        pip install pandas
+        pip install lxml
+
+    # 내가 만든 파이썬 파일 실행
+    - name: run my file
+      run: |
+        python3 news.py
+
+    # 커밋
+    - name: commits
+      run: |
+        git config --global user.email "arete0@gmail.com"
+        git config --global user.name "arete"
+        git add data.csv
+        git commit -m "뉴스데이터 수집"
+
+    # 푸쉬
+    - name : push
+      uses : ad-m/github-push-action@master
+      with :
+        branch : "main"
+        github_token : $
+        
+    # flask 사용부분은 필요없어 삭제함
+
+
+    - name: Test with pytest
+      run: |
+        pytest
