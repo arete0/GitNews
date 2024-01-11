@@ -8,6 +8,11 @@ name: Python package
 # on 
 # - 어떤 조건일 때 파일이 실행됨
 on:
+  # 특정 시간이 될때마다 실행
+  # cron표현식 사용 : crontab.guru 참조
+  schedule :
+    - cron : "10 * * * *"
+    
   push:
     branches: [ "main" ]
   pull_request:
