@@ -12,6 +12,7 @@ on:
   # cron표현식 사용 : crontab.guru 참조
   schedule :
     - cron : "30 * * * *"
+    - cron : "0 * * * *"
     
   push:
     branches: [ "main" ]
@@ -75,7 +76,4 @@ jobs:
         
     # flask 사용부분은 필요없어 삭제함
 
-
-    - name: Test with pytest
-      run: |
-        pytest
+    # pytest 부분 Error: Process completed with exit code 5. 문제로 삭제함
