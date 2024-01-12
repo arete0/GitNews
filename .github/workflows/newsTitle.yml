@@ -61,7 +61,7 @@ jobs:
       run: |
         git config --global user.email "arete0@gmail.com"
         git config --global user.name "arete"
-        git add data.csv
+        git add .
         git commit -m "뉴스데이터 수집"
         # git diff --exit-code || git commit -m "뉴스데이터 수집"
 
