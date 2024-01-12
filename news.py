@@ -40,4 +40,5 @@ for i in range(len(url)) :
 
 data = {"뉴스제목" : titleList, "신문사" : publicationList, "기자" : bylineList, "입력시간" : timeList, "뉴스기사" : articleList, "url" : urlList}
 breaking = pd.DataFrame(data)
-breaking.to_csv("data.csv", encoding = "utf-8")
+now = time
+breaking.to_csv("data" + now.strftime('%Y-%m-%d %H:%M:%S')) + ".csv", encoding = "utf-8")
