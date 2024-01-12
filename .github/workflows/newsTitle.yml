@@ -49,6 +49,7 @@ jobs:
         pip install beautifulsoup4
         pip install pandas
         pip install lxml
+        pip install datetime
         
 
     # 내가 만든 파이썬 파일 실행
