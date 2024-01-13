@@ -3,6 +3,7 @@ import time
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 from datetime import datetime
+from pytz import timezone
 
 res = req.get("https://search.daum.net/search?nil_suggest=btn&w=news&DA=STC&cluster=y&q=속보&p=1&sort=recency")
 soup = bs(res.text, "lxml")
@@ -41,5 +42,5 @@ for i in range(len(url)) :
 
 data = {"뉴스제목" : titleList, "신문사" : publicationList, "기자" : bylineList, "입력시간" : timeList, "뉴스기사" : articleList, "url" : urlList}
 breaking = pd.DataFrame(data)
-now = datetime.now()
+now = datetime.now(timezone('Asia/Seoul'))
 breaking.to_csv("data_" + now.strftime('%Y-%m-%d_%H:%M:%S') + ".csv", encoding = "utf-8")
