@@ -30,7 +30,9 @@ for i in range(len(url)) :
     
     for j in range(len(temp)) :
         article += temp[j].text
-        
+    if not article :
+        article = "Nan"
+    
     publicationList.append(publication[i].text)
     urlList.append(url[i]["href"])
     titleList.append(title[i].text)
